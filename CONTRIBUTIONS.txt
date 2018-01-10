@@ -1,0 +1,22 @@
+Samuel Lewis
+    Encryption Module
+        Implemented the encryption framework. Provided all the encryption
+        support functionality.
+    User Interface Module
+        Implemented the GUI. Provided the front-end display for user to
+        interact with.
+
+Jason Tu
+    Manager Module
+        Implemented the Manager, main driver of the application. Handled/
+        processed user inputs, key exchange, encryption and decryption, and
+        transmission of messages.
+    Module Integration
+        Integrated all modules to ensure cohesion.
+
+Jonathan Lo
+    Network Module
+        Implemented the network framework. Provided all the network
+        communication support functionality.
+    Documentation/Report
+        Written all of the reports and formal documentation submitted.

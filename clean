@@ -1,0 +1,6 @@
+#!/bin/bash
+
+rm -f *.class
+rm -f docs/*.aux
+rm -f docs/*.log
+rm -f docs/*.out

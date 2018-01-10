@@ -1,0 +1,460 @@
+% THIS IS SIGPROC-SP.TEX - VERSION 3.1
+% WORKS WITH V3.2SP OF ACM_PROC_ARTICLE-SP.CLS
+% APRIL 2009
+%
+% It is an example file showing how to use the 'acm_proc_article-sp.cls' V3.2SP
+% LaTeX2e document class file for Conference Proceedings submissions.
+% -------------------------------------------------------------------------------------------------
+% This .tex file (and associated .cls V3.2SP) *DOES NOT* produce:
+%       1) The Permission Statement
+%       2) The Conference (location) Info information
+%       3) The Copyright Line with ACM data
+%       4) Page numbering
+% -------------------------------------------------------------------------------------------------
+% It is an example which *does* use the .bib file (from which the .bbl file
+% is produced).
+% REMEMBER HOWEVER: After having produced the .bbl file,
+% and prior to final submission,
+% you need to 'insert'  your .bbl file into your source .tex file so as to provide
+% ONE 'self-contained' source file.
+%
+% Questions regarding SIGS should be sent to
+% Adrienne Griscti ---> griscti@acm.org
+%
+% Questions/suggestions regarding the guidelines, .tex and .cls files, etc. to
+% Gerald Murray ---> murray@hq.acm.org
+%
+% For tracking purposes - this is V3.1SP - APRIL 2009
+%
+%
+% NOTE: this document includes multiple images, located in the shared drive
+
+\documentclass[sigconf]{acmart}
+\def\BibTeX{\textsc{Bib}\TeX}
+\usepackage{url}
+\usepackage{balance}
+
+\begin{document}
+
+\title{Secure Chat Application}
+\subtitle{Encrypted Communication}
+
+\author{Samuel Lewis}
+\affiliation{%
+	\institution{Rochester Institute of Technology}
+	%   \streetaddress{P.O. Box 1212}
+	\city{Rochester}
+	\state{New York}
+	\postcode{14623}
+}
+\email{srl8336@rit.edu}
+
+\author{Jonathan Lo}
+\affiliation{%
+	\institution{Rochester Institute of Technology}
+	%   \streetaddress{P.O. Box 1212}
+	\city{Rochester}
+	\state{New York}
+	\postcode{14623}
+}
+\email{jcl5201@rit.edu}
+
+\author{Jason Tu}
+\affiliation{%
+	\institution{Rochester Institute of Technology}
+	%   \streetaddress{P.O. Box 1212}
+	\city{Rochester}
+	\state{New York}
+	\postcode{14623}
+}
+\email{jwt8264@rit.edu}
+
+\date{15 February 2017}
+
+\begin{abstract}
+	Our project, named \textit{Lil' (Secure) Bits}, will implement a secure chat application that
+	integrates existing Computer Security and Network Security principles.
+\end{abstract}
+
+\terms{Computer Security, Network Communication, Encryption}
+
+\keywords{Asymmetric Encryption, Ciphertext, Digital Signature, Plaintext, Privacy, Public-Key
+Cryptography, Symmetric Encryption} % NOT required for Proceedings
+
+\maketitle
+
+
+%--------------------------------------------------------------------------------------------------
+% Introduction
+%--------------------------------------------------------------------------------------------------
+\section{Introduction}
+
+\subsection{Motivation}
+Our team has a large interest in network-related problems. Given the opportunity to incorporate
+this into a security-related problem, and an increased awareness of privacy issues, we decided to
+work on an encrypted chat application, to secure our private communication. The team believes that
+privacy is a priority; thus, it is necessary to encrypt our messages to prevent any breaches by
+unauthorized individuals or organizations. Another important motivation for this project was the
+desire to produce a product that could feasibly be used in every day life.
+
+\subsection{Project Goals}
+
+\subsubsection{Purpose}
+Project: \texttt{Lil' (Secure) Bits} is designed to provide a secure communication channel that
+integrates existing Computer Security principles and Network Security principles. The project will
+be used to explore the listed principles and implement a software application that will utilize
+encryption algorithms to ensure message communications are secured over the network.
+
+The application goal is the creation of a secure and private communication
+channel~\cite{Huang:privacy}. Thus, the team attempts to explore possible
+principles and algorithms that will ensure that the communication has satisfied our goals.
+
+\subsubsection{Scope}
+The project will focus on utilizing computer security principles, such as existing encryption
+algorithms, digital signatures, Advanced Encryption Standard and privacy, to prototype a secure
+chat application in an academic environment. The project shall be limited to the listed design
+constraints and project goals.
+
+
+%--------------------------------------------------------------------------------------------------
+% Overall Approach
+%--------------------------------------------------------------------------------------------------
+\section{Overall Approach}
+
+\subsection{Overview}
+The application's shall be implemented using the client-server model; thus dividing the application
+into two network components:
+\begin{enumerate}
+	\item client component
+	\item server component
+\end{enumerate}
+
+The server component shall be defined as the "back-end service", which shall provide all the
+necessary logistics, such as routing, session management, etc. Following our project's goals, the
+design and implementation of the server component shall be restricted. The server component shall
+have limited, if any, access to the communication channel/data.
+
+The client component shall be defined as the "front-end service", which shall provide all the
+necessary interface for users and shall also include security features, such as encryption, digital
+signatures, etc. Following our project's goals, the design and implementation of the client
+component shall provide users confidentiality, integrity, and availability. Communications between
+the client and server components shall be secured using necessary security features, such as
+digital signatures ~\cite{Fersch:provable} ~\cite{Meijer:signature}, public key encryption
+~\cite{Kuchlin:publickey}, or Advance Encryption Standard ~\cite{Jariwala:taxonomy}
+
+\subsection{Constraints}
+
+\subsubsection{Design Constraints}
+\begin{itemize}
+	\item The application must be implemented using Java.
+	\item The application must secure communication using existing security principles.
+	\item The application must include a user interface.
+	\item The application must ensure the following security principles:
+	      \begin{itemize}
+	      	\item User Identity
+	      	\item Data Confidentiality
+	      	\item Data Integrity
+	      	\item Availability
+	      	\item Access Control
+	      	\item Recovery
+	      \end{itemize}
+\end{itemize}
+
+\subsubsection{External Constraints}
+\begin{itemize}
+	\item The performance of the system and application is limited to the provided system hardware.
+	      Therefore, the application features should be limited to the system specifications.
+	\item The application shall be implemented for a privately-owned system. Therefore, there are
+	      limitations on the security on these systems. The team will be implementing the
+	      application on the assumption that the system itself, as a whole, has been secured.
+\end{itemize}
+
+
+%--------------------------------------------------------------------------------------------------
+% Design
+%--------------------------------------------------------------------------------------------------
+\section{Design}
+
+\subsection{Modules}
+Our team decided to divide project into four logical modules, listed below
+\begin{itemize}
+	\item \texttt{Encryption}
+	\item \texttt{Manager}
+	\item \texttt{Network}
+	\item \texttt{User Interface}
+\end{itemize}
+
+\subsubsection{User Interface}
+The \texttt{User Interface} serves as a view for the user, allowing easy access to the functions of the chat application. It will be implemented as a command line interface, where the user may type commands and feed input, which will be interpreted and sent to the \texttt{Manager} for processing. The \texttt{Manager} will respond back with output, which will be displayed back to the user over the command line.
+
+\subsubsection{Manager}
+The \texttt{Manager} module serves as a central hub, connecting and abstracting the functionality
+of each module to the others. The \texttt{User Interface} module will take user input and,
+communicate the intention and data to the \texttt{Manager}. The \texttt{Manager} will then carry
+out the request of the user, whether it be connecting to another user, or sending a message. When
+necessary, the \texttt{Manager} will use the \texttt{Encryption} module to encrypt data before
+sending, or decrypting received data. The \texttt{Manager} will also use the \texttt{Network}
+module to send data out over the network to other users.
+
+\subsubsection{Encryption}
+The \texttt{Encryption} module provides the necessary encryption framework for encrypting a
+character stream. Keys are safely stored and generated inside, with no functions or public
+variables that could leak secure information. Simple encryption related functions are provided to
+make using the Encryption object a simple black box experience.
+
+\subsubsection{Network}
+The \texttt{Network} module provides the necessary network framework for sending and receiving
+data through an established connection. This module establishes the client and server
+connection and provides simple network related functions to access the connections.
+
+\subsection{Software Design}
+
+\subsubsection{Modules Architecture}
+Figure~\ref{Modules Architecture} outlines the module interfaces.
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=3in]{Design_ModuleInterfaces.png}
+		\caption{Modules Architecture}
+		\label{Modules Architecture}
+	\end{center}
+\end{figure}
+
+
+%--------------------------------------------------------------------------------------------------
+% Scheduling and Planning
+%--------------------------------------------------------------------------------------------------
+\section{Planning, Requirements, and Deliverables}
+
+\subsection{Phase 2}
+Outlines our teams scheduling and planning for Phase 2.
+
+\subsubsection{Planning and Requirements}
+Table~\ref{Phase 2 Goals} outlines the team's goals for Phase 2.
+\begin{table}[htb]
+	\centering
+	\caption{Phase 2 Goals}
+	\label{Phase 2 Goals}
+
+	\begin{tabular}{|c|} \hline
+		\textbf{Goals}                                \\ \hline
+		Completion of design and architecture         \\ \hline
+		Initial implementation of \texttt{Encryption} \\ \hline
+		Initial implementation of \texttt{Network}    \\ \hline
+		Initial implementation of \texttt{Manager}    \\ \hline
+	\end{tabular}
+\end{table}
+
+\subsubsection{Delivarables and Submission}
+Table~\ref{Phase 2 Deliverables} outlines the team's deliverables and submission details for Phase
+2.
+\begin{table}[htb]
+	\centering
+	\caption{Phase 2 Deliverables}
+	\label{Phase 2 Deliverables}
+
+	\begin{tabular}{|c|} \hline
+		\textbf{Deliverables}                         \\ \hline
+		Completion of design and architecture         \\ \hline
+		Initial implementation of \texttt{Encryption} \\ \hline
+		Initial implementation of \texttt{Network}    \\ \hline
+		Initial implementation of \texttt{Manager}    \\ \hline
+	\end{tabular}
+\end{table}
+
+\subsection{Phase 3}
+Outlines our teams scheduling and planning for Phase 3.
+
+\subsubsection{Planning and Requirements}
+Table~\ref{Phase 3 Goals} outlines the team's goals for Phase 3.
+\begin{table}[htb]
+	\centering
+	\caption{Phase 3 Goals}
+	\label{Phase 3 Goals}
+
+	\begin{tabular}{|c|} \hline
+		\textbf{Goals}                                        \\ \hline
+		Implementation of \texttt{Encryption}                 \\ \hline
+		Implementation of \texttt{Network}                    \\ \hline
+		Implementation of \texttt{Manager}                    \\ \hline
+		Implementation of \texttt{User Interface}             \\ \hline
+		Implementation of thread safe, parallel communication \\ \hline
+		Implementation of improved exception handling         \\ \hline
+		Implementation of correct end-state termination       \\ \hline
+	\end{tabular}
+\end{table}
+\newline
+The full implementation of \texttt{Encryption}, \texttt{Network}, \texttt{Manager} modules includes
+the following requirements:
+\begin{enumerate}
+	\item validate data confidentiality, integrity and availability. As this is an important
+	      part of our project goal, the team must test the application to verify this
+	      requirement.
+	\item allow a peer-to-peer connection with two clients, one of which acting as the server.
+	      The application will not support a group messaging system.
+	\item provide complete documentation of the implementations of the modules. The team shall
+	      provide metrics and documentations to report necessary information.
+\end{enumerate}
+
+The implementation of \texttt{User Interface} module includes the following requirements:
+\begin{enumerate}
+	\item allow users to provide input to the module.
+	\item provides users with accessible output from the module.
+	\item provide complete documentation of the implementation of the module. The team shall provide
+	      metrics and documentations to report necessary information.
+\end{enumerate}
+The \texttt{User Interface} module is designed for the purpose of a interactive component to the
+application, which is further used to test the application. The amount of effort to implement this
+module shall reflect this.
+
+The implementation of thread safe, parallel communication includes the following requirements:
+\begin{enumerate}
+	\item allow clients to communicate with one another in parallel. This allows the application to
+	      properly mimic a chat application.
+	\item utilize threading mechanics to implement parallel communication. Due to the parallel
+	      nature, the implementation shall incorporate threading of communication, and other
+	      input/output operations. We do not require the Network to be threaded as TCP protocol
+	      itself handles this.
+\end{enumerate}
+
+The implementation of improved exception handling includes the following
+requirements:
+\begin{enumerate}
+	\item the application shall gracefully terminate when an unrecoverable fault occurs. The
+	      default solution to solve any unrecoverable fault is to reset the application, which
+	      involves terminating.
+	\item exceptions caught shall be outputted for debugging. It is important for debugging purposes
+	      to output any warnings and errors detected, allowing the team to resolve the issue.
+\end{enumerate}
+
+The implementation of correct end-state termination includes the following requirements:
+\begin{enumerate}
+	\item upon termination, allocated resources should be correctly terminated. This includes all
+	      streams, buffers, and connections.
+\end{enumerate}
+
+%--------------------------------------------------------------------------------------------------
+% Implementation
+%--------------------------------------------------------------------------------------------------
+\section{Implementation}
+
+\subsection{Encryption module}
+\subsubsection{Encryption Class}
+Figure~\ref{Encryption UML} outlines the Encryption class implementation.
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=2in]{UML_Encryption.png}
+		\caption{Encryption UML}
+		\label{Encryption UML}
+	\end{center}
+\end{figure}
+
+\subsection{Network module}
+\subsubsection{Network Class}
+Figure~\ref{Network UML} outlines the Network class implementation.
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=3in]{UML_Network.png}
+		\caption{Network UML}
+		\label{Network UML}
+	\end{center}
+\end{figure}
+\subsubsection{Client Class}
+Figure~\ref{Client UML} outlines the Client class implementation.
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=2in]{UML_Client.png}
+		\caption{Client UML}
+		\label{Client UML}
+	\end{center}
+\end{figure}
+\subsubsection{Server Class}
+Figure~\ref{Server UML} outlines the Server class implementation.
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=2in]{UML_Server.png}
+		\caption{Server UML}
+		\label{Server UML}
+	\end{center}
+\end{figure}
+\subsubsection{Communication Class}
+Figure~\ref{Communication UML} outlines the Communication class implementation.
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=2in]{UML_Communication.png}
+		\caption{Communication UML}
+		\label{Communication UML}
+	\end{center}
+\end{figure}
+
+% \section{Analysis}
+
+% \section{Results and Discussions}
+
+\appendix
+\section{Network} % Appendix A
+This appendix considers the \texttt{Network} module in detail.
+
+\subsection{Network Packet Overview}
+The \texttt{Network} module utilizes a custom packet format sent across the network implemented
+using TCP~\cite{Postel:rfc793}, shown in Figure~\ref{Network Packet Overview}. The figure outlines the general packet
+format, which dictates how the \texttt{Manager} module will have to parse the packet.
+\begin{figure} [htb]
+	\centering
+	\includegraphics[width=3in]{NetworkPacketOverview.png}
+	\caption{Custom Network Packet}
+	\label{Network Packet Overview}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Network Headers} is used by the \texttt{Network} module. These headers are not
+	      generally accessible externally, and are used only to process incoming packets.
+	\item \textbf{Optional Headers} is made accessible to the \texttt{Manager} module. The extra
+	      headers provide the \texttt{Manager} with any extra information necessary.
+	\item \textbf{Data} is the data stream to send across the network. \texttt{Network} does not
+	      access or alter the information.
+\end{itemize}
+
+\subsection{Network Header Summary}
+The \texttt{Network} module uses the following header options, described in Table~\ref{Network
+Header Summary}.
+\begin{table}[htb]
+	\centering
+	\caption{Network Header Summary}
+	\label{Network Header Summary}
+
+	\begin{tabular}{|p{4em}|p{20em}|} \hline
+		\textbf{Header} & \textbf{Description}                                \\ \hline
+		\texttt{HELLO}  & used for initial handshake                          \\ \hline
+		\texttt{MSG}    & used to indicate transmission of data               \\ \hline
+		\texttt{QUERY}  & used to indicate readiness to receive data          \\ \hline
+		\texttt{QUIT}   & used to indicate quitting                           \\ \hline
+		\texttt{ACK}    & used to acknowledge a received packet               \\ \hline
+		\texttt{NACK}   & used to acknowledge a received packet with an issue \\ \hline
+	\end{tabular}
+\end{table}
+
+\subsection{Network Header Detailed Description}
+Table~\ref{Network Header Details} lists detailed information on the Network Header options
+available.
+\begin{table}[htb]
+	\centering
+	\caption{Network Header Details}
+	\label{Network Header Details}
+
+	\begin{tabular}{|c|c|c|} \hline
+		\textbf{Network Header} & \textbf{Optional Header} & \textbf{Data}   \\ \hline
+		\texttt{HELLO}          & \texttt{NONE}            & \texttt{NONE}   \\ \hline
+		\texttt{MSG}            & available                & Message to send \\ \hline
+		\texttt{QUERY}          & available                & \texttt{NONE}   \\ \hline
+		\texttt{QUIT}           & available                & \texttt{NONE}   \\ \hline
+		\texttt{ACK}            & available                & \texttt{NONE}   \\ \hline
+		\texttt{NACK}           & available                & \texttt{NONE}   \\ \hline
+	\end{tabular}
+\end{table}
+
+
+\balance
+\bibliographystyle{abbrv}
+\bibliography{report}
+
+\end{document}

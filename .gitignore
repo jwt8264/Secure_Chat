@@ -1,0 +1,8 @@
+*.class
+*.out
+*.aux
+*.log
+*.pdf
+*.png
+*.blg
+.DS_Store
